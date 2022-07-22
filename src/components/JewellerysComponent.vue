@@ -1,26 +1,36 @@
 <template>
 	<div>
-		<h1>This is list jewellerys</h1>
+		<h2>Бижутерия</h2>
 		<div class="jewellery-list">
-			<JewellerysComponent v-for="jewellery in jewellerys" :value="jewellery" :engraving="engraving">
-			</JewellerysComponent>
+			<JewelleryComponent v-for="(jewellery, index) in modelValue" v-model="modelValue[index]" :engraving="engraving"
+				@update:modelValue="update">
+			</JewelleryComponent>
 		</div>
 	</div>
 </template>
 
 <script>
-import JewellerysComponent from './JewelleryComponent.vue';
+import JewelleryComponent from './JewelleryComponent.vue';
 export default {
-	components: { JewellerysComponent },
+	components: { JewelleryComponent },
 	props: {
-		jewellerys: Array,
+		modelValue: Array,
 		engraving: Object
+	},
+	emits: ["update:modelValue"],
+	methods: {
+		update() {
+			this.$emit("update:modelValue", [...this.modelValue]);
+		}
 	}
 }
 </script>
+
 <style>
 .jewellery-list {
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
 	gap: 20px;
 }
 </style>

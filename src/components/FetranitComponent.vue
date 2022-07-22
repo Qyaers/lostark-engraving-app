@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Here is your fetranit.</h1>
+		<h2>Фетранит</h2>
 		<div v-for="(engr, index) in listEngraving">
 			{{ engr.value }}
 			<select v-model="listEngraving[index].value" v-if="!engr.value" @change="update()">
@@ -74,9 +74,7 @@ export default {
 			this.update();
 		},
 		update() {
-			let test = { ...this.listEngraving };
-			console.log("Fetr", test);
-			this.$emit("update:modelValue", test);
+			this.$emit("update:modelValue", { ...this.listEngraving });
 		}
 	}
 }

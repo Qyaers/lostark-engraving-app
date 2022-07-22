@@ -15,7 +15,16 @@
 
 <script>
 export default {
-	props: ["engraving"],
+	props: {
+		engraving: {
+			type: Object,
+			default: () => ({}),
+		},
+		modelValue: {
+			type: Array,
+		}
+	},
+	emits: ["update:modelValue"],
 	data() {
 		return {
 			listEngraving: [{
@@ -27,7 +36,7 @@ export default {
 			}, {
 				value: "",
 				weight: 0
-			}],
+			}]
 		}
 	},
 	methods: {
@@ -83,7 +92,7 @@ export default {
 			this.update();
 		},
 		update() {
-			this.$emit("update:modelValue", this.listEngraving);
+			this.$emit("update:modelValue", [...this.listEngraving]);
 		}
 	},
 }

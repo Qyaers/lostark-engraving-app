@@ -52,7 +52,7 @@ export default {
 
 			if (curEngraving.length)
 				for (let value of curEngraving)
-					if (~this.engraving.basic.indexOf(value))
+					if (~this.engraving.basic.indexOf(value) || ~this.engraving.personal.indexOf(value))
 						positiveCount++;
 
 			let debuffCount = 0;
@@ -62,8 +62,12 @@ export default {
 					if (~this.engraving.debuff.indexOf(value))
 						debuffCount++;
 
-			if (positiveCount < 2 && Array.isArray(this.engraving.basic)) {
+			if (positiveCount < 2 && (Array.isArray(this.engraving.basic) && Array.isArray(this.engraving.personal))) {
 				for (let checkValue of this.engraving.basic) {
+					if (!~curEngraving.indexOf(checkValue))
+						result.push(checkValue);
+				}
+				for (let checkValue of this.engraving.personal) {
 					if (!~curEngraving.indexOf(checkValue))
 						result.push(checkValue);
 				}

@@ -52,7 +52,8 @@ export default {
 
 .weight-item::before {
 	content: "◇";
-	color: rgba(108, 102, 102, 0.429);
+	font-size: 30px;
+	color: rgb(60, 58, 58);
 }
 
 .weight-item.active::before {

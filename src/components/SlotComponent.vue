@@ -30,7 +30,7 @@ export default {
 	emits: ["update:modelValue"],
 	computed: {
 		engravingListValue() {
-			return Array.isArray(this.engraving.basic) ? [].concat(this.engraving.basic, this.engraving.personal) : [];
+			return Array.isArray(this.engraving.basic) ? [].concat(this.engraving.basic, this.engraving.personal).sort((a, b) => a > b ? 1 : a < b ? -1 : 0) : [];
 		}
 	},
 	methods: {

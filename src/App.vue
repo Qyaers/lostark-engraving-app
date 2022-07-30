@@ -96,12 +96,6 @@ export default {
 </script>
 
 <style>
-/* .wrapper {
-	width: 1140px;
-	margin: 0 auto;
-	text-align: center;
-} */
-
 .content {
 	display: flex;
 }

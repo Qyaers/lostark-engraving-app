@@ -73,6 +73,10 @@ export default {
 				}
 			}
 
+			result.sort((a, b) => {
+				return a > b ? 1 : a < b ? -1 : 0;
+			});
+
 			if (!debuffCount) {
 				result = result.concat(this.engraving.debuff);
 			}

@@ -1,6 +1,6 @@
 <template>
 	<div class="engraving__list">
-		<h2>Результат вычислений</h2>
+		<h2>Выбранные гравировки</h2>
 		<div class="engraving__item engraving" v-for="engr in result">
 			<div class="engraving__title">
 				{{ engr.value }}

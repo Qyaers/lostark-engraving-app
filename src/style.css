@@ -48,7 +48,7 @@ h1 {
   line-height: 1.1;
 }
 input{
-	background-color: #3B3B3B;
+	background-color: hsla(0, 1%, 40%, 0.635);
 	color:white;
 }
 button {
@@ -82,4 +82,5 @@ button:focus-visible {
   text-align: center;
   background-color: #f1eeee2c;
   backdrop-filter: blur(4px);
+  border-radius: 5px;
 }

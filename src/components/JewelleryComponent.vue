@@ -90,7 +90,7 @@ export default {
 					maxWeight = engr.weight;
 			let result = [1, 2, 3];
 			if (maxWeight < 4 || curWeight > 3) {
-				result = result.concat([4, 5]);
+				result = result.concat([4, 5, 6]);
 			}
 			return result;
 		},

@@ -21,11 +21,13 @@ import fetranit from "./components/FetranitComponent.vue";
 import slots from "./components/SlotsComponent.vue";
 import jewellerys from "./components/JewellerysComponent.vue";
 import result from "./components/ResultCalcComponent.vue";
+import selectWithSearch from './components/SelectComponent.vue';
 
 export default {
-	components: { fetranit, slots, jewellerys, result },
+	components: { selectWithSearch, fetranit, slots, jewellerys, result },
 	data() {
 		return {
+			select: "",
 			engraving: {},
 			fetranit: [],
 			slots: [{}, {}],

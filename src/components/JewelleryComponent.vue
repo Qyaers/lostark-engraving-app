@@ -1,10 +1,9 @@
 <template>
 	<div class="jewellery-item">
 		<div v-for="(engr, index) in listEngraving">
-			{{ engr.value }}
-			<select v-model="listEngraving[index].value" v-if="!engr.value" @change="update()">
-				<option v-for="value in getEngravingValue()" :value="value">{{ value }}</option>
-			</select>
+			<select-with-search v-model="listEngraving[index].value" @update:modelValue="update()"
+				:engraving="getEngravingValue">
+			</select-with-search>
 			<select v-model="listEngraving[index].weight" @change="update()">
 				<option v-for="i in weightValue(index)" :value="i">{{ i }}</option>
 			</select>
@@ -39,10 +38,10 @@ export default {
 			}]
 		}
 	},
-	methods: {
+	computed: {
 		getEngravingValue() {
 			let curEngraving = [];
-			let result = [];
+			let result = {};
 
 			for (let engr of this.listEngraving)
 				if (engr.value)
@@ -63,25 +62,26 @@ export default {
 						debuffCount++;
 
 			if (positiveCount < 2 && (Array.isArray(this.engraving.basic) && Array.isArray(this.engraving.personal))) {
+				let arrBasic = [];
 				for (let checkValue of this.engraving.basic) {
 					if (!~curEngraving.indexOf(checkValue))
-						result.push(checkValue);
+						arrBasic.push(checkValue);
 				}
+				let arrPersonal = [];
 				for (let checkValue of this.engraving.personal) {
 					if (!~curEngraving.indexOf(checkValue))
-						result.push(checkValue);
+						arrPersonal.push(checkValue);
 				}
+				result = { basic: arrBasic, personal: arrPersonal };
 			}
 
-			result.sort((a, b) => {
-				return a > b ? 1 : a < b ? -1 : 0;
-			});
-
 			if (!debuffCount) {
-				result = result.concat(this.engraving.debuff);
+				result["debuff"] = this.engraving.debuff;
 			}
 			return result;
 		},
+	},
+	methods: {
 		weightValue(index) {
 			let maxWeight = 0;
 			let curWeight = this.listEngraving[index].weight;

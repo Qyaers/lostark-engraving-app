@@ -2,10 +2,9 @@
 	<div>
 		<h2>Фетранит</h2>
 		<div v-for="(engr, index) in listEngraving">
-			{{ engr.value }}
-			<select v-model="listEngraving[index].value" v-if="!engr.value" @change="update()">
-				<option v-for="value in getEngravingValue()" :value="value">{{ value }}</option>
-			</select>
+			<select-with-search v-model="listEngraving[index].value" @update:modelValue="update()"
+				:engraving="getEngravingValue">
+			</select-with-search>
 			<select v-model="listEngraving[index].weight" @change="update()">
 				<option v-for="i in 11" :value="i - 1">{{ i - 1 }}</option>
 			</select>
@@ -16,6 +15,7 @@
 </template>
 
 <script>
+
 export default {
 	props: ["modelValue", "engraving"],
 	emits: ["update:modelValue"],
@@ -33,10 +33,10 @@ export default {
 			}],
 		}
 	},
-	methods: {
+	computed: {
 		getEngravingValue() {
 			let curEngraving = [];
-			let result = [];
+			let result = {};
 
 			for (let engr of this.listEngraving)
 				if (engr.value)
@@ -57,21 +57,27 @@ export default {
 						debuffCount++;
 
 			if (positiveCount < 2 && Array.isArray(this.engraving.basic)) {
+				let arrBasic = [];
 				for (let checkValue of this.engraving.basic) {
 					if (!~curEngraving.indexOf(checkValue))
-						result.push(checkValue);
+						arrBasic.push(checkValue);
 				}
-			}
 
-			result.sort((a, b) => {
-				return a > b ? 1 : a < b ? -1 : 0;
-			});
+				arrBasic.sort((a, b) => {
+					return a > b ? 1 : a < b ? -1 : 0;
+				});
+
+				result["basic"] = arrBasic;
+			}
 
 			if (!debuffCount) {
-				result = result.concat(this.engraving.debuff);
+				result["debuff"] = this.engraving.debuff;
 			}
+
 			return result;
 		},
+	},
+	methods: {
 		clearEngraving(engrav) {
 			engrav.value = '';
 			engrav.weight = 0;

@@ -1,8 +1,7 @@
 <template>
 	<div>
-		<select v-model="modelValue.value" @change="changeValue">
-			<option v-for="engr in engravingListValue" :value="engr">{{ engr }}</option>
-		</select>
+		<select-with-search v-model="modelValue.value" @update:modelValue="changeValue" :engraving="engravingListValue">
+		</select-with-search>
 		<select v-model="modelValue.weight" @change="update">
 			<option v-for="i in getWeight()" :value="i">{{ i }}</option>
 		</select>
@@ -30,8 +29,9 @@ export default {
 	emits: ["update:modelValue"],
 	computed: {
 		engravingListValue() {
-			return Array.isArray(this.engraving.basic) ? [].concat(this.engraving.basic, this.engraving.personal).sort((a, b) => a > b ? 1 : a < b ? -1 : 0) : [];
+			return { basic: this.engraving.basic, personal: this.engraving.personal };
 		}
+
 	},
 	methods: {
 		clearValue() {

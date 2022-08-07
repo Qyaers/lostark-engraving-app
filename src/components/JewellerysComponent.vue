@@ -4,6 +4,7 @@
 		<div class="jewellery-list">
 			<JewelleryComponent v-for="(jewellery, index) in modelValue" v-model="modelValue[index]" :engraving="engraving"
 				@update:modelValue="update">
+				{{ itemJew[index] }}
 			</JewelleryComponent>
 		</div>
 	</div>
@@ -16,6 +17,17 @@ export default {
 	props: {
 		modelValue: Array,
 		engraving: Object
+	},
+	data() {
+		return {
+			itemJew: [
+				"Ожерелье",
+				"Серьга",
+				"Серьга 2",
+				"Кольцо",
+				"Кольцо 2"
+			]
+		}
 	},
 	emits: ["update:modelValue"],
 	methods: {

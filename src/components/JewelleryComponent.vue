@@ -1,5 +1,8 @@
 <template>
 	<div class="jewellery-item">
+		<div class="jewellery-item__title">
+			<slot></slot>
+		</div>
 		<div v-for="(engr, index) in listEngraving">
 			<select-with-search v-model="listEngraving[index].value" @update:modelValue="update()"
 				:engraving="getEngravingValue">
@@ -105,3 +108,12 @@ export default {
 	},
 }
 </script>
+
+<style>
+.jewellery-item__title {
+	font-weight: bold;
+	margin-bottom: 4px;
+	padding-bottom: 4px;
+	border-bottom: 2px solid #B3B3B3B3;
+}
+</style>

@@ -50,9 +50,12 @@ export default {
 	display: flex;
 }
 
+.weight-item {
+	font-size: 30px;
+}
+
 .weight-item::before {
 	content: "◇";
-	font-size: 30px;
 	color: rgb(60, 58, 58);
 }
 
@@ -67,5 +70,11 @@ export default {
 
 .weight-item:nth-child(5n) {
 	padding-right: 10px;
+}
+
+@media (max-width: 480px) {
+	.weight-item {
+		font-size: 15px;
+	}
 }
 </style>

@@ -127,4 +127,6 @@ export default {
 .engrav__item--c-personal {
 	background-color: rgba(63, 237, 75, 0.521);
 }
+
+@media (max-width: 480px) {}
 </style>

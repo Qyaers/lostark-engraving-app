@@ -3,14 +3,16 @@
 		<div class="jewellery-item__title">
 			<slot></slot>
 		</div>
-		<div v-for="(engr, index) in listEngraving">
-			<select-with-search v-model="listEngraving[index].value" @update:modelValue="update()"
-				:engraving="getEngravingValue">
-			</select-with-search>
-			<select v-model="listEngraving[index].weight" @change="update()">
-				<option v-for="i in weightValue(index)" :value="i">{{ i }}</option>
-			</select>
-			<button @click="clearEngraving(listEngraving[index])" v-if="engr.value">X</button>
+		<div class="items-wrap">
+			<div v-for="(engr, index) in listEngraving" class="item-wrap">
+				<select-with-search v-model="listEngraving[index].value" @update:modelValue="update()"
+					:engraving="getEngravingValue">
+				</select-with-search>
+				<select v-model="listEngraving[index].weight" @change="update()">
+					<option v-for="i in weightValue(index)" :value="i">{{ i }}</option>
+				</select>
+				<button @click="clearEngraving(listEngraving[index])" v-if="engr.value">X</button>
+			</div>
 		</div>
 	</div>
 </template>

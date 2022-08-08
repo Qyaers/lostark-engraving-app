@@ -1,13 +1,16 @@
 <template>
-	<div>
-		<select-with-search v-model="modelValue.value" @update:modelValue="changeValue" :engraving="engravingListValue">
-		</select-with-search>
-		<select v-model="modelValue.weight" @change="update">
-			<option v-for="i in getWeight()" :value="i">{{ i }}</option>
-		</select>
-		<button @click="clearValue" v-if="modelValue.value">
-			X
-		</button>
+	<div class="items-wrap">
+		<div class="item-wrap">
+			<select-with-search v-model="modelValue.value" @update:modelValue="changeValue"
+				:engraving="engravingListValue">
+			</select-with-search>
+			<select v-model="modelValue.weight" @change="update">
+				<option v-for="i in getWeight()" :value="i">{{ i }}</option>
+			</select>
+			<button @click="clearValue" v-if="modelValue.value">
+				X
+			</button>
+		</div>
 	</div>
 </template>
 

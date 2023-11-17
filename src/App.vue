@@ -1,7 +1,6 @@
 <template>
 	<div class="wrapper">
-		<div class="lang-btns"><input class="lang-btns__input-ru" type="button" value="RU"><input class="lang-btns__input-eu"
-				type="button" value="EU"></div>
+
 		<h1>Калькулятор гравировок</h1>
 		<p>Для расчета нужных вам гравировок, заполните данные в формах ниже. После заполнения форм результат будет
 			появляться в секции результата.</p>
@@ -19,7 +18,7 @@
 <script>
 
 import dataRU from "./data.json";
-import dataEU from "./dataENG.json";
+// import dataEU from "./dataENG.json";
 import fetranit from "./components/FetranitComponent.vue";
 import slots from "./components/SlotsComponent.vue";
 import jewellerys from "./components/JewellerysComponent.vue";
@@ -42,9 +41,6 @@ export default {
 		this.engraving = dataRU;
 	},
 	methods: {
-		update(e) {
-			console.log("App", e);
-		},
 		reCalc() {
 			let resultCalc = {};
 			for (let idx in this.fetranit) {
@@ -95,7 +91,6 @@ export default {
 			});
 			this.result = resultArray;
 		}
-		//TODO make check function of curent type lang(it must change value data of JSON object on eu or ru)
 	}
 }
 </script>
